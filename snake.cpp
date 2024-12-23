@@ -11,18 +11,18 @@ enum class Direction {
 struct SnakeNode {
 	int row;
 	int col;
-	string symbol;
+	char symbol;
 
 	SnakeNode() {};
-	SnakeNode(int row, int col, string symbol) : row(row), col(col), symbol(symbol) {}
+	SnakeNode(int row, int col, char symbol) : row(row), col(col), symbol(symbol) {}
 };
 
 class Snake {
 	public:
 		Snake() {
-			SnakeNode* body1 = new SnakeNode(0, 0, "+ ");
-			SnakeNode* body2 = new SnakeNode(0, 1, "+ ");
-			SnakeNode* head = new SnakeNode(0, 2, "@ ");
+			SnakeNode* body1 = new SnakeNode(0, 0, '+');
+			SnakeNode* body2 = new SnakeNode(0, 1, '+');
+			SnakeNode* head = new SnakeNode(0, 2, '@');
 			_snake.push_front(body1);
 			_snake.push_front(body2);
 			_snake.push_front(head);
@@ -66,9 +66,9 @@ class Snake {
 				cout << "You died.\n";
 			}
 			// Change the symbol of the previous head
-			_snake.front()->symbol = "+ ";
+			_snake.front()->symbol = '+';
 			// Create new head
-			SnakeNode* newHead = new SnakeNode(newHeadRow, newHeadCol, "@ ");
+			SnakeNode* newHead = new SnakeNode(newHeadRow, newHeadCol, '@');
 			_snake.push_front(newHead);
 			// Move the tail
 			if (_hasEaten) {

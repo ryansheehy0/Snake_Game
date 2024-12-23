@@ -1,5 +1,8 @@
-snake: snake.o board.o snake_game.o
-	g++ snake.o board.o snake_game.o -o snake
+snake: snake.o board.o snake_game.o food.o
+	g++ snake.o board.o snake_game.o food.o -o snake
+
+food.o: food.cpp
+	g++ -c food.cpp
 
 snake.o: snake.cpp
 	g++ -c snake.cpp
