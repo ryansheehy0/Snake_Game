@@ -8,17 +8,17 @@ using namespace std;
 
 char usersMove();
 
-const int kRows = 20;
-const int kCols = 30;
+const int kRows = 12;
+const int kCols = 12;
 
 int main() {
 	Board board = Board(kRows, kCols);
-	board.print();
 	// Game loop
 	while (true) {
+		board.clear();
+		board.print();
 		Direction userDirection;
-		char userInput = usersMove();
-		switch (userInput) {
+		switch (usersMove()) {
 			case 'w':
 				userDirection = Direction::kUp;
 				break;
@@ -32,9 +32,10 @@ int main() {
 				userDirection = Direction::kDown;
 				break;
 		}
-		board.moveSnake(userDirection);
-		board.clear();
-		board.print();
+		if (!board.moveSnake(userDirection)) {
+			board.printScore();
+			break;
+		}
 	}
 }
 

@@ -7,11 +7,11 @@ food.o: food.cpp
 snake.o: snake.cpp
 	g++ -c snake.cpp
 
-board.o: board.cpp
-	g++ -c board.cpp
+board.o: board.cpp snake.cpp food.cpp
+	g++ -c board.cpp snake.cpp food.cpp
 
-snake_game.o: snake_game.cpp
-	g++ -c snake_game.cpp
+snake_game.o: snake_game.cpp board.cpp snake.cpp food.cpp
+	g++ -c snake_game.cpp board.cpp snake.cpp food.cpp
 
 clean:
 		rm -rf *.o snake
