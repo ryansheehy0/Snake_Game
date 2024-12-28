@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <optional>
 
 using namespace std;
 
@@ -23,12 +24,16 @@ class Board {
 			if (_food) {
 				if (_snake.intersectsHead(_food->row(), _food->col())) {
 					_snake.eat();
-					delete _food;
-					_food = nullptr;
+					_food = nullopt;
 				}
 			}
 			numOfTurns++;
 			return successfulMove;
+		}
+
+		bool aStarMoveSnake() {
+			static int foodRow = 0;
+			static int foodCol = 0;
 		}
 
 		void printScore() const {
@@ -45,7 +50,7 @@ class Board {
 		const char kSpaceSymbol = '.';
 		// Parts in the board
 		Snake _snake;
-		Food* _food = nullptr;
+		optional<Food> _food = nullopt;
 		int numOfTurns = 0;
 
 		void printTopBottomWalls() const {
@@ -82,7 +87,7 @@ class Board {
 			}
 			// If there is not food, create it
 			if (!_food) {
-				_food = new Food(board, _snake.length(), kSpaceSymbol);
+				_food.emplace(board, _snake.length(), kSpaceSymbol);
 			}
 			// Add food to the board
 			board[_food->row()][_food->col()] = _food->symbol();
